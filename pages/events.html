@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MingalarMate Campus Events: Discover and register for Taiwan international student cultural gatherings, work permit seminars, and language workshops.">
+  <title>Campus Events — MingalarMate</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="icon" type="image/svg+xml" href="../assets/images/logo.svg">
+</head>
+<body>
+  <!-- Accessible skip link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Shared Site Header -->
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="../index.html" class="site-brand" aria-label="MingalarMate Home">
+        <img src="../assets/images/logo.svg" alt="" class="brand-icon" width="36" height="36">
+        <span class="brand-text">
+          <span class="brand-title">MingalarMate</span>
+          <span class="brand-subtitle">Campus Events</span>
+        </span>
+      </a>
+
+      <!-- Mobile Navigation Hamburger Button -->
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Toggle navigation menu">
+        <span class="nav-toggle-icon"></span>
+      </button>
+
+      <!-- Primary Navigation -->
+      <nav id="primary-navigation" class="site-nav" aria-label="Main menu">
+        <ul class="nav-list">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="information-center.html" class="nav-link">Info Center</a></li>
+          <li><a href="community-forum.html" class="nav-link">Forum</a></li>
+          <li><a href="events.html" class="nav-link active" aria-current="page">Events</a></li>
+          <li><a href="study-in-taiwan.html" class="nav-link">Study</a></li>
+          <li><a href="living-in-taiwan.html" class="nav-link">Living</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main id="main-content" class="main-content">
+    
+    <!-- Page Header Banner -->
+    <header class="page-banner">
+      <div class="container page-banner-content">
+        <span class="badge badge-accent">Activities & Exchange 活動管理系統</span>
+        <h1 class="page-title">Campus & Cultural Events</h1>
+        <p class="page-lead">
+          Explore upcoming cultural celebrations, legal workshops, language circles, and orientation sessions designed for international students in Taiwan.
+        </p>
+        <div class="page-meta">
+          <span>🎉 Host your student club activity or register online</span>
+          <span>•</span>
+          <span>Location: NCNU Campus & Regional Centers</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="container section">
+
+      <!-- Action & Filter Bar -->
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: var(--space-xl); background: var(--color-surface); padding: var(--space-md) var(--space-lg); border-radius: var(--radius-md); border: 1px solid var(--color-border);">
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;" id="events-filter-pills">
+          <button class="cat-pill active" data-cat="all" style="padding: 0.35rem 0.85rem; border-radius: var(--radius-pill); border: 1px solid var(--color-primary); background: var(--color-primary); color: #FFF; font-weight: 600; cursor: pointer; font-size: 0.85rem;">All Events</button>
+          <button class="cat-pill" data-cat="cultural" style="padding: 0.35rem 0.85rem; border-radius: var(--radius-pill); border: 1px solid var(--color-border); background: var(--color-surface); color: var(--color-text); cursor: pointer; font-size: 0.85rem;">🏮 Cultural Festivals</button>
+          <button class="cat-pill" data-cat="career" style="padding: 0.35rem 0.85rem; border-radius: var(--radius-pill); border: 1px solid var(--color-border); background: var(--color-surface); color: var(--color-text); cursor: pointer; font-size: 0.85rem;">💼 Career & Work Permits</button>
+          <button class="cat-pill" data-cat="academic" style="padding: 0.35rem 0.85rem; border-radius: var(--radius-pill); border: 1px solid var(--color-border); background: var(--color-surface); color: var(--color-text); cursor: pointer; font-size: 0.85rem;">📖 Language & Studies</button>
+        </div>
+
+        <button id="btn-open-create-event" class="btn btn-primary" style="padding: 0.5rem 1.2rem; font-size: 0.9rem;">
+          ➕ Publish Campus Event
+        </button>
+      </div>
+
+      <!-- Events Grid -->
+      <div id="events-grid" class="grid-3">
+        <!-- Rendered dynamically -->
+        <div style="text-align: center; grid-column: 1 / -1; padding: 2rem; color: var(--color-text-muted);">Loading upcoming events...</div>
+      </div>
+
+    </div>
+
+    <!-- Registration Modal -->
+    <div id="event-register-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.5); z-index: 9999; align-items: center; justify-content: center; backdrop-filter: blur(4px);">
+      <div class="card" style="width: 90%; max-width: 440px; background: #FFF; position: relative; padding: var(--space-xl); border-radius: var(--radius-lg);">
+        <button id="btn-close-reg-modal" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--color-text-muted);">&times;</button>
+        <span class="badge" style="margin-bottom: var(--space-xs);">Online Registration</span>
+        <h3 id="reg-event-title" style="margin-top: 0.25rem; margin-bottom: var(--space-md); color: var(--color-primary-dark);">Event Title</h3>
+        
+        <form id="form-event-register">
+          <div style="margin-bottom: var(--space-sm);">
+            <label style="display: block; font-weight: 600; font-size: 0.85rem; margin-bottom: 0.25rem;">Student Name</label>
+            <input type="text" id="reg-student-name" required placeholder="e.g. Min Thet Aung" style="width: 100%; padding: 0.6rem; border: 1px solid var(--color-border); border-radius: var(--radius-sm); font-family: inherit;">
+          </div>
+
+          <div style="margin-bottom: var(--space-md);">
+            <label style="display: block; font-weight: 600; font-size: 0.85rem; margin-bottom: 0.25rem;">University Email</label>
+            <input type="email" id="reg-student-email" required placeholder="student@ncnu.edu.tw" style="width: 100%; padding: 0.6rem; border: 1px solid var(--color-border); border-radius: var(--radius-sm); font-family: inherit;">
+          </div>
+
+          <div id="reg-alert" style="display: none; padding: 0.5rem 0.75rem; border-radius: var(--radius-sm); font-size: 0.85rem; margin-bottom: 1rem;"></div>
+
+          <button type="submit" id="btn-confirm-reg" class="btn btn-primary" style="width: 100%;">Confirm Spot Registration</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Create Event Modal -->
+    <div id="create-event-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.5); z-index: 9999; align-items: center; justify-content: center; backdrop-filter: blur(4px);">
+      <div class="card" style="width: 90%; max-width: 500px; background: #FFF; position: relative; padding: var(--space-xl); border-radius: var(--radius-lg);">
+        <button id="btn-close-create-event" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--color-text-muted);">&times;</button>
+        <h3 style="margin-bottom: var(--space-md); color: var(--color-primary-dark);">Publish Student Event</h3>
+        
+        <form id="form-publish-event">
+          <div style="margin-bottom: var(--space-sm);">
+            <label style="display: block; font-weight: 600; font-size: 0.85rem; margin-bottom: 0.2rem;">Event Title</label>
+            <input type="text" id="ev-title" required placeholder="e.g. Myanmar Traditional Food Festival" style="width: 100%; padding: 0.6rem; border: 1px solid var(--color-border); border-radius: var(--radius-sm); font-family: inherit;">
+          </div>
+
+          <div style="margin-bottom: var(--space-sm);">
+            <label style="display: block; font-weight: 600; font-size: 0.85rem; margin-bottom: 0.2rem;">Organizer / Student Club</label>
+            <input type="text" id="ev-organizer" required placeholder="e.g. Myanmar Student Association" style="width: 100%; padding: 0.6rem; border: 1px solid var(--color-border); border-radius: var(--radius-sm); font-family: inherit;">
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-bottom: var(--space-sm);">
+            <div>
+              <label style="display: block; font-weight: 600; font-size: 0.85rem; margin-bottom: 0.2rem;">Category</label>
+              <select id="ev-cat" style="width: 100%; padding: 0.6rem; border: 1px solid var(--color-border); border-radius: var(--radius-sm); font-family: inherit; background:#FFF;">
+                <option value="cultural">🏮 Cultural</option>
+                <option value="career">💼 Career</option>
+                <option value="academic">📖 Academic</option>
+                <option value="social">🎉 Social</option>
+              </select>
+            </div>
+            <div>
+              <label style="display: block; font-weight: 600; font-size: 0.85rem; margin-bottom: 0.2rem;">Capacity (Seats)</label>
+              <input type="number" id="ev-capacity" value="50" min="5" max="500" style="width: 100%; padding: 0.6rem; border: 1px solid var(--color-border); border-radius: var(--radius-sm); font-family: inherit;">
+            </div>
+          </div>
+
+          <div style="margin-bottom: var(--space-sm);">
+            <label style="display: block; font-weight: 600; font-size: 0.85rem; margin-bottom: 0.2rem;">Location</label>
+            <input type="text" id="ev-loc" required placeholder="e.g. NCNU Student Activity Center" style="width: 100%; padding: 0.6rem; border: 1px solid var(--color-border); border-radius: var(--radius-sm); font-family: inherit;">
+          </div>
+
+          <div style="margin-bottom: var(--space-md);">
+            <label style="display: block; font-weight: 600; font-size: 0.85rem; margin-bottom: 0.2rem;">Description</label>
+            <textarea id="ev-desc" required rows="3" placeholder="Explain what the event is about, what to prepare, schedule..." style="width: 100%; padding: 0.6rem; border: 1px solid var(--color-border); border-radius: var(--radius-sm); font-family: inherit; resize: vertical;"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Publish Event</button>
+        </form>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Shared Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>
+            <img src="../assets/images/logo.svg" alt="" width="24" height="24" style="filter: brightness(1.2);">
+            MingalarMate
+          </h3>
+          <p class="footer-desc">
+            A welcoming student guide dedicated to helping Myanmar and international students thrive during their academic journey and everyday life in Taiwan.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Website Guides</h4>
+          <ul class="footer-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="information-center.html">Information Center</a></li>
+            <li><a href="community-forum.html">Community Forum</a></li>
+            <li><a href="events.html">Campus Events</a></li>
+            <li><a href="study-in-taiwan.html">Study in Taiwan</a></li>
+            <li><a href="living-in-taiwan.html">Living in Taiwan</a></li>
+            <li><a href="part-time-jobs.html">Part-time Jobs</a></li>
+            <li><a href="admin.html">Admin Console</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Official Portals</h4>
+          <ul class="footer-links">
+            <li><a href="https://www.studyintaiwan.org" target="_blank" rel="noopener noreferrer">Study in Taiwan ↗</a></li>
+            <li><a href="https://english.moe.gov.tw" target="_blank" rel="noopener noreferrer">Ministry of Education (MOE) ↗</a></li>
+            <li><a href="https://www.immigration.gov.tw" target="_blank" rel="noopener noreferrer">National Immigration Agency (NIA) ↗</a></li>
+            <li><a href="https://ezwp.wda.gov.tw" target="_blank" rel="noopener noreferrer">EZ Work Taiwan (Work Permits) ↗</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          &copy; <span id="current-year">2026</span> MingalarMate. Independent Student Information Project.
+        </div>
+        <div class="footer-disclaimer">
+          Information provided for educational orientation only. Not legal, immigration, or professional advice. Last reviewed: November 2026.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="../assets/js/i18n.js"></script>
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/auth.js"></script>
+  <script src="../assets/js/chat.js"></script>
+
+  <!-- Events Controller Script -->
+  <script>
+    const API_BASE = window.MINGALARMATE_API_URL || 'http://localhost:8000/api';
+
+    const DEFAULT_EVENTS = [
+      {
+        id: 'ev-1',
+        title: 'Myanmar Traditional Thingyan Water Festival Gathering',
+        description: 'Celebrate the new year with international and local students! Includes traditional Myanmar snacks, cultural performances, and games.',
+        location: 'NCNU Student Activity Center Plaza, Puli',
+        organizer: 'NCNU Myanmar Student Association',
+        category: 'cultural',
+        capacity: 80,
+        registered_count: 34,
+        date_str: 'April 14, 2027 (Annual Festival)'
+      },
+      {
+        id: 'ev-2',
+        title: 'Foreign Student Work Permit & Employment Law Seminar',
+        description: 'Detailed seminar explaining Ministry of Labor student work permits, hour limitations, ARC extensions, and post-graduation contact point scoring.',
+        location: 'International Conference Hall B1, NCNU',
+        organizer: 'Office of International Affairs (OIA)',
+        category: 'career',
+        capacity: 100,
+        registered_count: 68,
+        date_str: 'November 28, 2026 • 14:00'
+      },
+      {
+        id: 'ev-3',
+        title: 'TOCFL Chinese Language Exam Study Group & Practice',
+        description: 'Weekly peer study session for students preparing for TOCFL Band B (Level 3 & 4) certification required for graduation and scholarships.',
+        location: 'Campus Library 3F Discussion Room 4',
+        organizer: 'MingalarMate Peer Mentors',
+        category: 'academic',
+        capacity: 30,
+        registered_count: 18,
+        date_str: 'Every Thursday • 18:30'
+      }
+    ];
+
+    let allEvents = DEFAULT_EVENTS;
+    let selectedCategory = 'all';
+    let targetEventId = null;
+
+    async function loadEvents() {
+      try {
+        const res = await fetch(`${API_BASE}/events`);
+        if (res.ok) {
+          const apiEvents = await res.json();
+          if (apiEvents && apiEvents.length > 0) {
+            allEvents = apiEvents.map(e => ({
+              id: e.id,
+              title: e.title,
+              description: e.description,
+              location: e.location,
+              organizer: e.organizer,
+              category: e.category,
+              capacity: e.capacity || 50,
+              registered_count: e.registered_count || 0,
+              date_str: new Date(e.event_date).toLocaleDateString()
+            }));
+          }
+        }
+      } catch (e) {
+        console.log('Using baseline campus events:', e);
+      }
+      renderEvents();
+    }
+
+    function renderEvents() {
+      const grid = document.getElementById('events-grid');
+      const filtered = allEvents.filter(e => selectedCategory === 'all' || e.category === selectedCategory);
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '<div style="text-align:center; grid-column: 1 / -1; padding: 2rem; color: var(--color-text-muted);">No events listed in this category currently.</div>';
+        return;
+      }
+
+      grid.innerHTML = filtered.map(ev => {
+        const percent = Math.min(100, Math.round((ev.registered_count / ev.capacity) * 100));
+        const isFull = ev.registered_count >= ev.capacity;
+
+        return `
+          <article class="event-card">
+            <div class="event-banner">
+              <span class="badge" style="font-size: 0.72rem;">${ev.category.toUpperCase()}</span>
+              <span style="font-size: 0.8rem; font-weight: 700; color: var(--color-primary-dark);">📅 ${ev.date_str}</span>
+            </div>
+            <div class="event-body">
+              <h3 style="font-size: 1.15rem; margin-bottom: 0.35rem;">${ev.title}</h3>
+              <div style="font-size: 0.82rem; color: var(--color-text-muted); margin-bottom: 0.5rem;">
+                📍 ${ev.location} • 👥 ${ev.organizer}
+              </div>
+              <p style="font-size: 0.9rem; line-height: 1.5; color: var(--color-text); margin-bottom: 1rem;">
+                ${ev.description}
+              </p>
+              
+              <div style="margin-top: auto; padding-top: 0.75rem; border-top: 1px solid var(--color-border-subtle);">
+                <div style="display: flex; justify-content: space-between; font-size: 0.78rem; font-weight: 600;">
+                  <span>Seats: ${ev.registered_count} / ${ev.capacity}</span>
+                  <span style="color: ${isFull ? '#D9534F' : 'var(--color-accent)'};">${isFull ? 'FULL' : `${ev.capacity - ev.registered_count} Left`}</span>
+                </div>
+                <div class="progress-bar-wrap">
+                  <div class="progress-bar-fill" style="width: ${percent}%; background: ${isFull ? '#D9534F' : 'var(--color-accent)'};"></div>
+                </div>
+
+                <button class="btn ${isFull ? 'btn-secondary' : 'btn-primary'} btn-register-event" data-id="${ev.id}" data-title="${ev.title}" ${isFull ? 'disabled' : ''} style="width: 100%; margin-top: 0.75rem; padding: 0.45rem; font-size: 0.85rem;">
+                  ${isFull ? 'Registration Full' : 'Register for Event'}
+                </button>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+
+      document.querySelectorAll('.btn-register-event').forEach(btn => {
+        btn.addEventListener('click', () => {
+          targetEventId = btn.getAttribute('data-id');
+          const title = btn.getAttribute('data-title');
+          document.getElementById('reg-event-title').textContent = title;
+          document.getElementById('event-register-modal').style.display = 'flex';
+        });
+      });
+    }
+
+    // Modal Events
+    document.getElementById('btn-close-reg-modal').addEventListener('click', () => {
+      document.getElementById('event-register-modal').style.display = 'none';
+    });
+    document.getElementById('btn-open-create-event').addEventListener('click', () => {
+      document.getElementById('create-event-modal').style.display = 'flex';
+    });
+    document.getElementById('btn-close-create-event').addEventListener('click', () => {
+      document.getElementById('create-event-modal').style.display = 'none';
+    });
+
+    // Handle Registration Submission
+    document.getElementById('form-event-register').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = document.getElementById('reg-student-name').value.trim();
+      const email = document.getElementById('reg-student-email').value.trim();
+      const alertBox = document.getElementById('reg-alert');
+
+      try {
+        await fetch(`${API_BASE}/events/${targetEventId}/register`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ student_name: name, student_email: email })
+        });
+      } catch (err) {}
+
+      // Update local count
+      const ev = allEvents.find(e => e.id === targetEventId);
+      if (ev) ev.registered_count++;
+
+      alertBox.textContent = '✅ You are successfully registered! A confirmation has been reserved.';
+      alertBox.style.display = 'block';
+      alertBox.style.background = 'var(--color-info-bg)';
+      alertBox.style.color = 'var(--color-info-text)';
+
+      setTimeout(() => {
+        document.getElementById('event-register-modal').style.display = 'none';
+        alertBox.style.display = 'none';
+        document.getElementById('form-event-register').reset();
+        renderEvents();
+      }, 1500);
+    });
+
+    // Handle Event Publish
+    document.getElementById('form-publish-event').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const title = document.getElementById('ev-title').value.trim();
+      const organizer = document.getElementById('ev-organizer').value.trim();
+      const category = document.getElementById('ev-cat').value;
+      const capacity = parseInt(document.getElementById('ev-capacity').value, 10);
+      const location = document.getElementById('ev-loc').value.trim();
+      const description = document.getElementById('ev-desc').value.trim();
+
+      allEvents.unshift({
+        id: 'ev-' + Date.now(),
+        title,
+        description,
+        location,
+        organizer,
+        category,
+        capacity,
+        registered_count: 1,
+        date_str: 'Upcoming'
+      });
+
+      try {
+        await fetch(`${API_BASE}/events`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            title, description, location, organizer, category, capacity,
+            event_date: new Date().toISOString()
+          })
+        });
+      } catch (err) {}
+
+      document.getElementById('create-event-modal').style.display = 'none';
+      document.getElementById('form-publish-event').reset();
+      renderEvents();
+    });
+
+    // Category Filter Pills
+    document.querySelectorAll('#events-filter-pills .cat-pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        document.querySelectorAll('#events-filter-pills .cat-pill').forEach(p => {
+          p.style.background = 'var(--color-surface)';
+          p.style.color = 'var(--color-text)';
+          p.style.borderColor = 'var(--color-border)';
+          p.classList.remove('active');
+        });
+        pill.style.background = 'var(--color-primary)';
+        pill.style.color = '#FFF';
+        pill.style.borderColor = 'var(--color-primary)';
+        pill.classList.add('active');
+        selectedCategory = pill.getAttribute('data-cat');
+        renderEvents();
+      });
+    });
+
+    // Initial Load
+    loadEvents();
+  </script>
+</body>
+</html>

@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MingalarMate Information Center: Search and explore categorized articles on Taiwan university admissions, visa, work permits, dorms, and daily living.">
+  <title>Information Center — MingalarMate</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="icon" type="image/svg+xml" href="../assets/images/logo.svg">
+</head>
+<body>
+  <!-- Accessible skip link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Shared Site Header -->
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="../index.html" class="site-brand" aria-label="MingalarMate Home">
+        <img src="../assets/images/logo.svg" alt="" class="brand-icon" width="36" height="36">
+        <span class="brand-text">
+          <span class="brand-title">MingalarMate</span>
+          <span class="brand-subtitle">Taiwan Student Guide</span>
+        </span>
+      </a>
+
+      <!-- Mobile Navigation Hamburger Button -->
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Toggle navigation menu">
+        <span class="nav-toggle-icon"></span>
+      </button>
+
+      <!-- Primary Navigation -->
+      <nav id="primary-navigation" class="site-nav" aria-label="Main menu">
+        <ul class="nav-list">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="information-center.html" class="nav-link active" aria-current="page">Info Center</a></li>
+          <li><a href="study-in-taiwan.html" class="nav-link">Study in Taiwan</a></li>
+          <li><a href="living-in-taiwan.html" class="nav-link">Living in Taiwan</a></li>
+          <li><a href="part-time-jobs.html" class="nav-link">Part-time Jobs</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main id="main-content" class="main-content">
+    
+    <!-- Page Header Banner -->
+    <header class="page-banner">
+      <div class="container page-banner-content">
+        <span class="badge badge-accent">Information Center 資訊中心</span>
+        <h1 class="page-title">International Student Information Center</h1>
+        <p class="page-lead">
+          Search, filter, and explore comprehensive, verified student guides across admissions, legal visas, work permits, housing, transit, and healthcare.
+        </p>
+        <div class="page-meta">
+          <span>📅 Last updated: November 2026</span>
+          <span>•</span>
+          <span>Trilingual Knowledge Base: EN / မြန်မာ / 中文</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="container section">
+
+      <!-- Search & Category Filter Controls -->
+      <div style="background: var(--color-surface); padding: var(--space-lg); border-radius: var(--radius-md); border: 1px solid var(--color-border); box-shadow: var(--shadow-sm); margin-bottom: var(--space-xl);">
+        
+        <!-- Search Input -->
+        <div style="margin-bottom: var(--space-md); position: relative;">
+          <input type="text" id="article-search-input" placeholder="🔍 Search articles by keyword (e.g., ARC, Work Permit, NHI, Dorm, Scholarship)..." style="
+            width: 100%;
+            padding: 0.8rem 1rem;
+            font-size: 1rem;
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius-sm);
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.2s;
+          ">
+        </div>
+
+        <!-- Category Pills -->
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;" id="category-pills">
+          <button class="cat-pill active" data-category="all" style="padding: 0.4rem 0.9rem; border-radius: var(--radius-pill); border: 1px solid var(--color-primary); background: var(--color-primary); color: #FFF; font-weight: 600; cursor: pointer; font-size: 0.85rem;">All Topics</button>
+          <button class="cat-pill" data-category="education" style="padding: 0.4rem 0.9rem; border-radius: var(--radius-pill); border: 1px solid var(--color-border); background: var(--color-surface); color: var(--color-text); cursor: pointer; font-size: 0.85rem;">🎓 Education</button>
+          <button class="cat-pill" data-category="visa-residence" style="padding: 0.4rem 0.9rem; border-radius: var(--radius-pill); border: 1px solid var(--color-border); background: var(--color-surface); color: var(--color-text); cursor: pointer; font-size: 0.85rem;">🛂 Visa & ARC</button>
+          <button class="cat-pill" data-category="part-time-jobs" style="padding: 0.4rem 0.9rem; border-radius: var(--radius-pill); border: 1px solid var(--color-border); background: var(--color-surface); color: var(--color-text); cursor: pointer; font-size: 0.85rem;">💼 Part-time Jobs</button>
+          <button class="cat-pill" data-category="accommodation" style="padding: 0.4rem 0.9rem; border-radius: var(--radius-pill); border: 1px solid var(--color-border); background: var(--color-surface); color: var(--color-text); cursor: pointer; font-size: 0.85rem;">🏠 Housing</button>
+          <button class="cat-pill" data-category="transportation" style="padding: 0.4rem 0.9rem; border-radius: var(--radius-pill); border: 1px solid var(--color-border); background: var(--color-surface); color: var(--color-text); cursor: pointer; font-size: 0.85rem;">🚇 Transit</button>
+          <button class="cat-pill" data-category="daily-life" style="padding: 0.4rem 0.9rem; border-radius: var(--radius-pill); border: 1px solid var(--color-border); background: var(--color-surface); color: var(--color-text); cursor: pointer; font-size: 0.85rem;">🏥 Health & Living</button>
+        </div>
+      </div>
+
+      <!-- Articles Grid -->
+      <div id="articles-grid" class="grid-3">
+        <!-- Rendered dynamically by script below -->
+      </div>
+
+      <!-- Empty State -->
+      <div id="articles-empty" style="display: none; text-align: center; padding: var(--space-2xl) 0;">
+        <h3>No matching articles found</h3>
+        <p style="color: var(--color-text-muted);">Try searching with another keyword or select "All Topics".</p>
+      </div>
+
+    </div>
+
+    <!-- Article Reader Modal -->
+    <div id="article-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.6); z-index: 9999; align-items: center; justify-content: center; backdrop-filter: blur(4px);">
+      <div class="card" style="width: 90%; max-width: 680px; max-height: 85vh; background: #FFF; position: relative; padding: var(--space-xl); overflow-y: auto; border-radius: var(--radius-lg);">
+        <button id="btn-close-article-modal" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--color-text-muted);">&times;</button>
+        <span id="modal-category" class="badge" style="margin-bottom: var(--space-xs);">Category</span>
+        <h2 id="modal-title" style="margin-top: var(--space-xs); margin-bottom: var(--space-xs);">Article Title</h2>
+        <div style="font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: var(--space-md);">
+          <span>📅 Last reviewed: <span id="modal-date">November 2026</span></span>
+        </div>
+        <div id="modal-content" style="line-height: 1.7; font-size: 1rem; color: var(--color-text);"></div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Shared Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>
+            <img src="../assets/images/logo.svg" alt="" width="24" height="24" style="filter: brightness(1.2);">
+            MingalarMate
+          </h3>
+          <p class="footer-desc">
+            A welcoming student guide dedicated to helping Myanmar and international students thrive during their academic journey and everyday life in Taiwan.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Website Guides</h4>
+          <ul class="footer-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="information-center.html">Information Center</a></li>
+            <li><a href="study-in-taiwan.html">Study in Taiwan</a></li>
+            <li><a href="living-in-taiwan.html">Living in Taiwan</a></li>
+            <li><a href="part-time-jobs.html">Part-time Jobs</a></li>
+            <li><a href="about.html">About MingalarMate</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Official Portals</h4>
+          <ul class="footer-links">
+            <li><a href="https://www.studyintaiwan.org" target="_blank" rel="noopener noreferrer">Study in Taiwan ↗</a></li>
+            <li><a href="https://english.moe.gov.tw" target="_blank" rel="noopener noreferrer">Ministry of Education (MOE) ↗</a></li>
+            <li><a href="https://www.immigration.gov.tw" target="_blank" rel="noopener noreferrer">National Immigration Agency (NIA) ↗</a></li>
+            <li><a href="https://ezwp.wda.gov.tw" target="_blank" rel="noopener noreferrer">EZ Work Taiwan (Work Permits) ↗</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          &copy; <span id="current-year">2026</span> MingalarMate. Independent Student Information Project.
+        </div>
+        <div class="footer-disclaimer">
+          Information provided for educational orientation only. Not legal, immigration, or professional advice. Last reviewed: November 2026.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="../assets/js/i18n.js"></script>
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/auth.js"></script>
+  <script src="../assets/js/chat.js"></script>
+
+  <!-- Interactive Information Center Script -->
+  <script>
+    const API_BASE = window.MINGALARMATE_API_URL || 'http://localhost:8000/api';
+
+    // Baseline fallback articles matching project knowledge base
+    const DEFAULT_ARTICLES = [
+      {
+        id: '1',
+        category_slug: 'education',
+        category_name: 'Education',
+        title: 'Higher Education Pathways & Admission Cycles in Taiwan',
+        summary: 'Explore comprehensive universities, science & technology institutions, fall/spring intake timelines, and document requirements.',
+        content: 'Taiwan is recognized globally for academic excellence, state-of-the-art research laboratories, and safe campuses. Prospective international students can apply for comprehensive universities (such as NTU, NCKU, NTHU) or universities of science and technology (Taiwan Tech, Taipei Tech). The primary intake is the Fall Semester (applications open January to March/April), while Spring Semester applications typically run from August to October. Essential application documents include authenticated diplomas, official transcripts, language proficiency certificates (TOCFL or IELTS/TOEFL), study plans, and proof of financial resources.',
+        date: 'November 2026'
+      },
+      {
+        id: '2',
+        category_slug: 'education',
+        category_name: 'Education',
+        title: 'Taiwan Government & University Scholarships',
+        summary: 'Detailed overview of the Taiwan MOE Scholarship, University Tuition Waivers, and TaiwanICDF awards for international degree seekers.',
+        content: 'International students in Taiwan have access to extensive financial support. The Ministry of Education (MOE) Taiwan Scholarship provides tuition discounts up to NT$40,000 per semester plus a monthly living allowance (NT$15,000 for undergraduates, NT$20,000 for graduate students). In addition, nearly all public and private universities offer direct institutional scholarships, full or partial tuition waivers, and campus teaching/research assistantships. Applications for government scholarships are typically submitted via local Taipei Economic and Cultural Offices (TECO) between February and March each year.',
+        date: 'November 2026'
+      },
+      {
+        id: '3',
+        category_slug: 'visa-residence',
+        category_name: 'Visa & ARC',
+        title: 'Alien Resident Certificate (ARC) & Visa Procedures',
+        summary: 'Step-by-step guidance on applying for and extending your Alien Resident Certificate (ARC) through the National Immigration Agency.',
+        content: 'International students entering Taiwan on a Resident Visa must apply for an Alien Resident Certificate (ARC) at the National Immigration Agency (NIA) service center or via the online student application portal within the required statutory period after arrival. Required documents include your valid passport, student Resident Visa, proof of enrollment or university admission certificate, lease agreement or proof of campus dormitory assignment, and a recent 2-inch passport photo. The ARC serves as your official legal identification card while living in Taiwan and is required to open bank accounts and sign telecom contracts.',
+        date: 'November 2026'
+      },
+      {
+        id: '4',
+        category_slug: 'part-time-jobs',
+        category_name: 'Part-time Jobs',
+        title: 'Student Work Permit Rules & Ministry of Labor Regulations',
+        summary: 'Statutory work permit requirements, 20-hour weekly limits during semesters, EZ Work Taiwan workflow, and illegal work penalties.',
+        content: 'Under the Employment Service Act, international students in Taiwan MUST obtain a formal Work Permit from the Workforce Development Agency (Ministry of Labor) before undertaking any paid work or internship. During regular academic semesters, international students are permitted to work a maximum of 20 hours per week. During official summer and winter recesses, this restriction is relaxed in accordance with current Ministry of Labor rules. Working without a valid permit is strictly prohibited under Article 43 and carries statutory fines between NT$30,000 and NT$150,000, permit revocation, and potential deportation. Applications are submitted online through the EZ Work Taiwan portal (ezwp.wda.gov.tw) with university endorsement.',
+        date: 'November 2026'
+      },
+      {
+        id: '5',
+        category_slug: 'daily-life',
+        category_name: 'Health & Living',
+        title: 'National Health Insurance (NHI) & Campus Healthcare',
+        summary: 'Everything you need to know about Taiwan mandatory health insurance coverage, card issuance, clinics, and hospital visits.',
+        content: 'Taiwan is celebrated for its universal healthcare system. International students holding a valid Alien Resident Certificate (ARC) are legally required to enroll in the National Health Insurance (NHI) program after reaching 6 consecutive months of residence in Taiwan (or under designated university group schemes). The NHI card grants affordable access to Taiwan comprehensive network of western medicine clinics, traditional Chinese medicine clinics, dental practices, and major medical centers with minimal copayments. Prior to NHI eligibility, students are covered under group international student injury/medical insurance organized by their university.',
+        date: 'November 2026'
+      },
+      {
+        id: '6',
+        category_slug: 'accommodation',
+        category_name: 'Housing',
+        title: 'Student Housing: Campus Dormitories vs Private Rentals',
+        summary: 'Comparing dormitory life and private apartment rentals, lease contracts, utility bills, and 591 housing search tips.',
+        content: 'Finding suitable accommodation is a key milestone for incoming students. University dormitories offer affordable pricing, utilities and high-speed internet bundled into semester fees, and convenient campus proximity, but feature shared rooms (2 to 4 students) and quiet hours. Off-campus private rentals provide independence and private studios. When renting off-campus, expect standard lease agreements requiring 2 months of rental deposit, separate calculation of electric sub-meter fees (typically NT$5 to NT$6.5 per kWh in private rentals), and contracts in Traditional Chinese. International students are encouraged to seek assistance from their university Office of International Affairs or senior peer mentors when signing leases.',
+        date: 'November 2026'
+      },
+      {
+        id: '7',
+        category_slug: 'transportation',
+        category_name: 'Transit',
+        title: 'Public Transportation: EasyCard, MRT, Trains & YouBike',
+        summary: 'Navigating Taiwan integrated transit system using EasyCard smart cards, metro networks, high-speed rail, and public bicycles.',
+        content: 'Public transportation in Taiwan is punctual, clean, safe, and inexpensive. The EasyCard and iPass are rechargeable contactless IC cards accepted on city buses, MRT metro systems (Taipei, New Taipei, Taoyuan, Taichung, Kaohsiung), Taiwan Railways (TRA), and for YouBike public bicycle rentals. Many university student IDs double as discounted student EasyCards. For cross-island travel, Taiwan High Speed Rail (THSR) connects Taipei to Kaohsiung in under two hours with early bird student discounts, while the TRA train network offers scenic coastal routes circling the island.',
+        date: 'November 2026'
+      }
+    ];
+
+    let allArticles = DEFAULT_ARTICLES;
+    let selectedCategory = 'all';
+
+    async function loadArticlesFromAPI() {
+      try {
+        const res = await fetch(`${API_BASE}/articles`);
+        if (res.ok) {
+          const apiArticles = await res.json();
+          if (apiArticles && apiArticles.length > 0) {
+            allArticles = apiArticles.map(a => ({
+              id: a.id,
+              category_slug: (a.categories && a.categories.slug) || 'education',
+              category_name: (a.categories && a.categories.name) || 'General',
+              title: a.title,
+              summary: a.summary || a.content.substring(0, 160) + '...',
+              content: a.content,
+              date: a.last_reviewed || 'November 2026'
+            }));
+          }
+        }
+      } catch (e) {
+        console.log('Using baseline seed articles:', e);
+      }
+      renderArticles();
+    }
+
+    function renderArticles() {
+      const grid = document.getElementById('articles-grid');
+      const emptyBox = document.getElementById('articles-empty');
+      const searchVal = document.getElementById('article-search-input').value.toLowerCase().trim();
+
+      const filtered = allArticles.filter(art => {
+        const matchesCat = selectedCategory === 'all' || art.category_slug === selectedCategory;
+        const matchesSearch = !searchVal || 
+          art.title.toLowerCase().includes(searchVal) || 
+          art.summary.toLowerCase().includes(searchVal) ||
+          art.content.toLowerCase().includes(searchVal);
+        return matchesCat && matchesSearch;
+      });
+
+      if (filtered.length === 0) {
+        grid.style.display = 'none';
+        emptyBox.style.display = 'block';
+        return;
+      }
+
+      grid.style.display = 'grid';
+      emptyBox.style.display = 'none';
+
+      grid.innerHTML = filtered.map(art => `
+        <article class="card" style="display: flex; flex-direction: column;">
+          <div style="margin-bottom: var(--space-xs);">
+            <span class="badge" style="font-size: 0.72rem;">${art.category_name}</span>
+          </div>
+          <h3 class="card-title" style="font-size: 1.15rem; margin-bottom: var(--space-xs);">${art.title}</h3>
+          <p class="card-text" style="font-size: 0.9rem; margin-bottom: var(--space-md); flex-grow: 1;">${art.summary}</p>
+          <div class="card-footer" style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 0.75rem; color: var(--color-text-muted);">📅 ${art.date}</span>
+            <button class="btn btn-secondary btn-read-article" data-id="${art.id}" style="padding: 0.35rem 0.75rem; font-size: 0.82rem;">Read Full Guide</button>
+          </div>
+        </article>
+      `).join('');
+
+      // Bind read button clicks
+      document.querySelectorAll('.btn-read-article').forEach(b => {
+        b.addEventListener('click', () => {
+          const id = b.getAttribute('data-id');
+          const article = allArticles.find(a => a.id === id);
+          if (article) openArticleModal(article);
+        });
+      });
+    }
+
+    function openArticleModal(art) {
+      document.getElementById('modal-category').textContent = art.category_name;
+      document.getElementById('modal-title').textContent = art.title;
+      document.getElementById('modal-date').textContent = art.date;
+      document.getElementById('modal-content').innerHTML = `<p>${art.content.replace(/\n\n/g, '</p><p>')}</p>`;
+      document.getElementById('article-modal').style.display = 'flex';
+    }
+
+    // Event Listeners
+    document.getElementById('btn-close-article-modal').addEventListener('click', () => {
+      document.getElementById('article-modal').style.display = 'none';
+    });
+
+    document.getElementById('article-modal').addEventListener('click', (e) => {
+      if (e.target.id === 'article-modal') {
+        document.getElementById('article-modal').style.display = 'none';
+      }
+    });
+
+    document.getElementById('article-search-input').addEventListener('input', renderArticles);
+
+    document.querySelectorAll('.cat-pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        document.querySelectorAll('.cat-pill').forEach(p => {
+          p.style.background = 'var(--color-surface)';
+          p.style.color = 'var(--color-text)';
+          p.style.borderColor = 'var(--color-border)';
+          p.classList.remove('active');
+        });
+        pill.style.background = 'var(--color-primary)';
+        pill.style.color = '#FFF';
+        pill.style.borderColor = 'var(--color-primary)';
+        pill.classList.add('active');
+        selectedCategory = pill.getAttribute('data-category');
+        renderArticles();
+      });
+    });
+
+    // Initial Load
+    loadArticlesFromAPI();
+  </script>
+</body>
+</html>

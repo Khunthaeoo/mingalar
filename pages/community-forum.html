@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MingalarMate Community Forum: A peer-to-peer discussion space for Myanmar and international students in Taiwan to ask questions, share experiences, and connect.">
+  <title>Community Forum — MingalarMate</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="icon" type="image/svg+xml" href="../assets/images/logo.svg">
+</head>
+<body>
+  <!-- Accessible skip link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Shared Site Header -->
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="../index.html" class="site-brand" aria-label="MingalarMate Home">
+        <img src="../assets/images/logo.svg" alt="" class="brand-icon" width="36" height="36">
+        <span class="brand-text">
+          <span class="brand-title">MingalarMate</span>
+          <span class="brand-subtitle">Student Community</span>
+        </span>
+      </a>
+
+      <!-- Mobile Navigation Hamburger Button -->
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Toggle navigation menu">
+        <span class="nav-toggle-icon"></span>
+      </button>
+
+      <!-- Primary Navigation -->
+      <nav id="primary-navigation" class="site-nav" aria-label="Main menu">
+        <ul class="nav-list">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="information-center.html" class="nav-link">Info Center</a></li>
+          <li><a href="community-forum.html" class="nav-link active" aria-current="page">Forum</a></li>
+          <li><a href="events.html" class="nav-link">Events</a></li>
+          <li><a href="study-in-taiwan.html" class="nav-link">Study</a></li>
+          <li><a href="living-in-taiwan.html" class="nav-link">Living</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main id="main-content" class="main-content">
+    
+    <!-- Page Header Banner -->
+    <header class="page-banner">
+      <div class="container page-banner-content">
+        <span class="badge">Student Exchange & Peer Support 學生討論區</span>
+        <h1 class="page-title">International Student Community Forum</h1>
+        <p class="page-lead">
+          Connect with fellow Myanmar students and international scholars across Taiwan. Share real-world living tips, ask academic questions, and exchange advice.
+        </p>
+        <div class="page-meta">
+          <span>👥 Open to all enrolled & prospective international students</span>
+          <span>•</span>
+          <span>Languages: English, မြန်မာ, 繁體中文</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="container section">
+
+      <!-- Action & Filter Bar -->
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: var(--space-xl); background: var(--color-surface); padding: var(--space-md) var(--space-lg); border-radius: var(--radius-md); border: 1px solid var(--color-border);">
+        <!-- Category Filters -->
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;" id="forum-filter-pills">
+          <button class="cat-pill active" data-cat="all" style="padding: 0.35rem 0.85rem; border-radius: var(--radius-pill); border: 1px solid var(--color-primary); background: var(--color-primary); color: #FFF; font-weight: 600; cursor: pointer; font-size: 0.85rem;">All Topics</button>
+          <button class="cat-pill" data-cat="academics" style="padding: 0.35rem 0.85rem; border-radius: var(--radius-pill); border: 1px solid var(--color-border); background: var(--color-surface); color: var(--color-text); cursor: pointer; font-size: 0.85rem;">🎓 Academics</button>
+          <button class="cat-pill" data-cat="life" style="padding: 0.35rem 0.85rem; border-radius: var(--radius-pill); border: 1px solid var(--color-border); background: var(--color-surface); color: var(--color-text); cursor: pointer; font-size: 0.85rem;">🍜 Daily Life</button>
+          <button class="cat-pill" data-cat="jobs" style="padding: 0.35rem 0.85rem; border-radius: var(--radius-pill); border: 1px solid var(--color-border); background: var(--color-surface); color: var(--color-text); cursor: pointer; font-size: 0.85rem;">💼 Part-time Work</button>
+          <button class="cat-pill" data-cat="general" style="padding: 0.35rem 0.85rem; border-radius: var(--radius-pill); border: 1px solid var(--color-border); background: var(--color-surface); color: var(--color-text); cursor: pointer; font-size: 0.85rem;">💬 General Chat</button>
+        </div>
+
+        <!-- Post Action Button -->
+        <button id="btn-open-create-post" class="btn btn-primary" style="padding: 0.5rem 1.2rem; font-size: 0.9rem;">
+          ✏️ Start a Discussion
+        </button>
+      </div>
+
+      <!-- Forum Posts Feed -->
+      <div id="forum-posts-container" style="display: flex; flex-direction: column; gap: var(--space-md);">
+        <!-- Loaded dynamically -->
+        <div style="text-align: center; padding: 2rem; color: var(--color-text-muted);">Loading community discussions...</div>
+      </div>
+
+    </div>
+
+    <!-- Create Post Modal -->
+    <div id="create-post-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.5); z-index: 9999; align-items: center; justify-content: center; backdrop-filter: blur(4px);">
+      <div class="card" style="width: 90%; max-width: 540px; background: #FFF; position: relative; padding: var(--space-xl); border-radius: var(--radius-lg);">
+        <button id="btn-close-post-modal" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--color-text-muted);">&times;</button>
+        <h3 style="margin-bottom: var(--space-md); color: var(--color-primary-dark);">Start a Student Discussion</h3>
+        
+        <form id="form-create-post">
+          <div style="margin-bottom: var(--space-sm);">
+            <label style="display: block; font-weight: 600; font-size: 0.85rem; margin-bottom: 0.25rem;">Category</label>
+            <select id="new-post-category" style="width: 100%; padding: 0.6rem; border: 1px solid var(--color-border); border-radius: var(--radius-sm); font-family: inherit; background: #FFF;">
+              <option value="academics">🎓 Academics & Scholarships</option>
+              <option value="life">🍜 Daily Living & Housing</option>
+              <option value="jobs">💼 Part-time Work & Permits</option>
+              <option value="general" selected>💬 General Student Chat</option>
+            </select>
+          </div>
+
+          <div style="margin-bottom: var(--space-sm);">
+            <label style="display: block; font-weight: 600; font-size: 0.85rem; margin-bottom: 0.25rem;">Your Name / Nickname</label>
+            <input type="text" id="new-post-author" placeholder="e.g. Su Mon (NCNU)" style="width: 100%; padding: 0.6rem; border: 1px solid var(--color-border); border-radius: var(--radius-sm); font-family: inherit;">
+          </div>
+
+          <div style="margin-bottom: var(--space-sm);">
+            <label style="display: block; font-weight: 600; font-size: 0.85rem; margin-bottom: 0.25rem;">Discussion Title</label>
+            <input type="text" id="new-post-title" required placeholder="What would you like to ask or share?" style="width: 100%; padding: 0.6rem; border: 1px solid var(--color-border); border-radius: var(--radius-sm); font-family: inherit;">
+          </div>
+
+          <div style="margin-bottom: var(--space-lg);">
+            <label style="display: block; font-weight: 600; font-size: 0.85rem; margin-bottom: 0.25rem;">Details & Questions</label>
+            <textarea id="new-post-content" required rows="5" placeholder="Share your experience or describe what you need help with..." style="width: 100%; padding: 0.6rem; border: 1px solid var(--color-border); border-radius: var(--radius-sm); font-family: inherit; resize: vertical;"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Publish Discussion Post</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Post Detail / Comments Modal -->
+    <div id="post-detail-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.6); z-index: 9999; align-items: center; justify-content: center; backdrop-filter: blur(4px);">
+      <div class="card" style="width: 90%; max-width: 650px; max-height: 85vh; background: #FFF; position: relative; padding: var(--space-xl); overflow-y: auto; border-radius: var(--radius-lg);">
+        <button id="btn-close-detail-modal" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--color-text-muted);">&times;</button>
+        <span id="detail-category-badge" class="badge" style="margin-bottom: var(--space-xs);">Category</span>
+        <h2 id="detail-title" style="margin-top: 0.25rem; margin-bottom: 0.5rem;">Discussion Title</h2>
+        <div style="font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: var(--space-md);">
+          Posted by <strong id="detail-author">Author</strong> • <span id="detail-date">Recently</span>
+        </div>
+        <div id="detail-content" style="line-height: 1.6; font-size: 0.95rem; margin-bottom: var(--space-lg); border-bottom: 1px solid var(--color-border); padding-bottom: var(--space-lg);"></div>
+
+        <!-- Replies Section -->
+        <h4 style="margin-bottom: var(--space-md);">Replies & Comments</h4>
+        <div id="detail-comments-list" style="display: flex; flex-direction: column; gap: var(--space-sm); margin-bottom: var(--space-lg);">
+          <div style="color: var(--color-text-muted); font-size: 0.85rem;">No replies yet. Be the first to reply!</div>
+        </div>
+
+        <!-- Add Reply Form -->
+        <form id="form-add-comment" style="display: flex; gap: 0.5rem;">
+          <input type="text" id="comment-input" required placeholder="Write a supportive reply..." style="flex: 1; padding: 0.6rem 0.85rem; border: 1px solid var(--color-border); border-radius: var(--radius-sm); font-family: inherit;">
+          <button type="submit" class="btn btn-primary" style="padding: 0.6rem 1rem;">Reply</button>
+        </form>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Shared Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>
+            <img src="../assets/images/logo.svg" alt="" width="24" height="24" style="filter: brightness(1.2);">
+            MingalarMate
+          </h3>
+          <p class="footer-desc">
+            A welcoming student guide dedicated to helping Myanmar and international students thrive during their academic journey and everyday life in Taiwan.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Website Guides</h4>
+          <ul class="footer-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="information-center.html">Information Center</a></li>
+            <li><a href="community-forum.html">Community Forum</a></li>
+            <li><a href="events.html">Campus Events</a></li>
+            <li><a href="study-in-taiwan.html">Study in Taiwan</a></li>
+            <li><a href="living-in-taiwan.html">Living in Taiwan</a></li>
+            <li><a href="part-time-jobs.html">Part-time Jobs</a></li>
+            <li><a href="admin.html">Admin Console</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Official Portals</h4>
+          <ul class="footer-links">
+            <li><a href="https://www.studyintaiwan.org" target="_blank" rel="noopener noreferrer">Study in Taiwan ↗</a></li>
+            <li><a href="https://english.moe.gov.tw" target="_blank" rel="noopener noreferrer">Ministry of Education (MOE) ↗</a></li>
+            <li><a href="https://www.immigration.gov.tw" target="_blank" rel="noopener noreferrer">National Immigration Agency (NIA) ↗</a></li>
+            <li><a href="https://ezwp.wda.gov.tw" target="_blank" rel="noopener noreferrer">EZ Work Taiwan (Work Permits) ↗</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          &copy; <span id="current-year">2026</span> MingalarMate. Independent Student Information Project.
+        </div>
+        <div class="footer-disclaimer">
+          Information provided for educational orientation only. Not legal, immigration, or professional advice. Last reviewed: November 2026.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="../assets/js/i18n.js"></script>
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/auth.js"></script>
+  <script src="../assets/js/chat.js"></script>
+
+  <!-- Forum Controller Script -->
+  <script>
+    const API_BASE = window.MINGALARMATE_API_URL || 'http://localhost:8000/api';
+
+    // Fallback baseline discussions
+    const DEFAULT_POSTS = [
+      {
+        id: 'p1',
+        author_name: 'Kyaw Swar (NCNU Senior)',
+        category: 'academics',
+        title: 'Tips for applying for the Taiwan MOE Scholarship renewal at NCNU',
+        content: 'Make sure to submit your official semester transcripts before the July 15 deadline to the OIA. You need a GPA of at least 80 or ranking in top 30% of your class. Let me know if you need help preparing your recommendation letters!',
+        likes_count: 14,
+        replies_count: 3,
+        created_at: new Date(Date.now() - 3600000 * 24).toISOString()
+      },
+      {
+        id: 'p2',
+        author_name: 'Htet Htet',
+        category: 'life',
+        title: 'Where to find authentic Myanmar tea leaf (Laphet) in Taichung & Puli?',
+        content: 'Mingalarba everyone! Does anyone know Asian grocery stores near Puli or Taichung train station that carry fresh laphet and fried beans? Craving tea leaf salad before midterm exams!',
+        likes_count: 9,
+        replies_count: 5,
+        created_at: new Date(Date.now() - 3600000 * 48).toISOString()
+      },
+      {
+        id: 'p3',
+        author_name: 'Thura Aung',
+        category: 'jobs',
+        title: 'EZ Work Taiwan portal permit approval timeframe update',
+        content: 'Applied last Tuesday via the online EZ Work Taiwan system. OIA approved in 2 days and the Ministry of Labor issued the electronic permit in 5 working days. Make sure your postal fee slip is scanned clearly.',
+        likes_count: 18,
+        replies_count: 2,
+        created_at: new Date(Date.now() - 3600000 * 72).toISOString()
+      }
+    ];
+
+    let currentPosts = DEFAULT_POSTS;
+    let selectedCat = 'all';
+    let activePostId = null;
+
+    async function loadPosts() {
+      try {
+        const res = await fetch(`${API_BASE}/forum/posts`);
+        if (res.ok) {
+          const apiPosts = await res.json();
+          if (apiPosts && apiPosts.length > 0) {
+            currentPosts = apiPosts.map(p => ({
+              id: p.id,
+              author_name: p.author_name || 'Student',
+              category: p.category || 'general',
+              title: p.title,
+              content: p.content,
+              likes_count: p.likes_count || 0,
+              replies_count: (p.forum_comments && p.forum_comments[0] && p.forum_comments[0].count) || 0,
+              created_at: p.created_at
+            }));
+          }
+        }
+      } catch (e) {
+        console.log('Using baseline forum discussions:', e);
+      }
+      renderPosts();
+    }
+
+    function renderPosts() {
+      const container = document.getElementById('forum-posts-container');
+      const filtered = currentPosts.filter(p => selectedCat === 'all' || p.category === selectedCat);
+
+      if (filtered.length === 0) {
+        container.innerHTML = '<div style="text-align:center; padding: 2rem; color: var(--color-text-muted);">No posts found in this category. Be the first to start a conversation!</div>';
+        return;
+      }
+
+      container.innerHTML = filtered.map(p => `
+        <article class="forum-card">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span class="badge" style="font-size: 0.72rem;">${p.category.toUpperCase()}</span>
+            <span style="font-size: 0.75rem; color: var(--color-text-muted);">${new Date(p.created_at).toLocaleDateString()}</span>
+          </div>
+          <h3 style="font-size: 1.15rem; margin: 0.25rem 0; cursor: pointer;" class="post-title-link" data-id="${p.id}">${p.title}</h3>
+          <p style="font-size: 0.92rem; color: var(--color-text-muted); margin: 0; line-height: 1.5;">${p.content.substring(0, 150)}${p.content.length > 150 ? '...' : ''}</p>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.5rem; font-size: 0.8rem; color: var(--color-text-light);">
+            <span>👤 ${p.author_name}</span>
+            <div style="display: flex; gap: 1rem; align-items: center;">
+              <button class="btn-like-post" data-id="${p.id}" style="background: none; border: none; cursor: pointer; font-size: 0.85rem; color: var(--color-primary);">❤️ ${p.likes_count}</button>
+              <span class="btn-view-post" data-id="${p.id}" style="cursor: pointer; color: var(--color-accent); font-weight: 600;">💬 ${p.replies_count || 0} Replies</span>
+            </div>
+          </div>
+        </article>
+      `).join('');
+
+      // Bind Clicks
+      document.querySelectorAll('.post-title-link, .btn-view-post').forEach(el => {
+        el.addEventListener('click', () => {
+          const id = el.getAttribute('data-id');
+          openPostDetail(id);
+        });
+      });
+
+      document.querySelectorAll('.btn-like-post').forEach(btn => {
+        btn.addEventListener('click', async () => {
+          const id = btn.getAttribute('data-id');
+          btn.textContent = '❤️ ' + (parseInt(btn.textContent.replace('❤️ ', '')) + 1);
+          try {
+            await fetch(`${API_BASE}/forum/posts/${id}/like`, { method: 'POST' });
+          } catch(e) {}
+        });
+      });
+    }
+
+    async function openPostDetail(id) {
+      activePostId = id;
+      const post = currentPosts.find(p => p.id === id);
+      if (!post) return;
+
+      document.getElementById('detail-category-badge').textContent = post.category.toUpperCase();
+      document.getElementById('detail-title').textContent = post.title;
+      document.getElementById('detail-author').textContent = post.author_name;
+      document.getElementById('detail-date').textContent = new Date(post.created_at).toLocaleDateString();
+      document.getElementById('detail-content').textContent = post.content;
+
+      // Load comments from API
+      const commentsContainer = document.getElementById('detail-comments-list');
+      try {
+        const res = await fetch(`${API_BASE}/forum/posts/${id}`);
+        if (res.ok) {
+          const data = await res.json();
+          if (data.comments && data.comments.length > 0) {
+            commentsContainer.innerHTML = data.comments.map(c => `
+              <div style="padding: 0.5rem 0.75rem; background: var(--color-surface-subtle); border-radius: var(--radius-sm); font-size: 0.85rem;">
+                <div style="display:flex; justify-content:space-between; margin-bottom:2px;">
+                  <strong>${c.author_name}</strong>
+                  <span style="color:var(--color-text-muted); font-size:0.75rem;">${new Date(c.created_at).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</span>
+                </div>
+                <div>${c.content}</div>
+              </div>
+            `).join('');
+          } else {
+            commentsContainer.innerHTML = '<div style="color: var(--color-text-muted); font-size: 0.85rem;">No replies yet. Be the first to share your thoughts!</div>';
+          }
+        }
+      } catch (e) {
+        commentsContainer.innerHTML = '<div style="color: var(--color-text-muted); font-size: 0.85rem;">Peer discussion thread active.</div>';
+      }
+
+      document.getElementById('post-detail-modal').style.display = 'flex';
+    }
+
+    // New Post Modal controls
+    document.getElementById('btn-open-create-post').addEventListener('click', () => {
+      document.getElementById('create-post-modal').style.display = 'flex';
+    });
+    document.getElementById('btn-close-post-modal').addEventListener('click', () => {
+      document.getElementById('create-post-modal').style.display = 'none';
+    });
+    document.getElementById('btn-close-detail-modal').addEventListener('click', () => {
+      document.getElementById('post-detail-modal').style.display = 'none';
+    });
+
+    // Submit New Post
+    document.getElementById('form-create-post').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const title = document.getElementById('new-post-title').value.trim();
+      const content = document.getElementById('new-post-content').value.trim();
+      const category = document.getElementById('new-post-category').value;
+      const author = document.getElementById('new-post-author').value.trim() || 'Student';
+
+      try {
+        await fetch(`${API_BASE}/forum/posts`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ title, content, category, author_name: author })
+        });
+      } catch (err) {}
+
+      // Add to local UI
+      currentPosts.unshift({
+        id: 'temp-' + Date.now(),
+        author_name: author,
+        category,
+        title,
+        content,
+        likes_count: 0,
+        replies_count: 0,
+        created_at: new Date().toISOString()
+      });
+
+      document.getElementById('create-post-modal').style.display = 'none';
+      document.getElementById('form-create-post').reset();
+      renderPosts();
+    });
+
+    // Submit Comment
+    document.getElementById('form-add-comment').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const input = document.getElementById('comment-input');
+      const text = input.value.trim();
+      if (!text || !activePostId) return;
+
+      const user = window.authManager ? window.authManager.getUser() : null;
+      const author = (user && user.user_metadata && user.user_metadata.full_name) || 'Fellow Student';
+
+      try {
+        await fetch(`${API_BASE}/forum/posts/${activePostId}/comments`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ content: text, author_name: author })
+        });
+      } catch (err) {}
+
+      const container = document.getElementById('detail-comments-list');
+      const newCommentEl = document.createElement('div');
+      newCommentEl.style.cssText = 'padding: 0.5rem 0.75rem; background: var(--color-surface-subtle); border-radius: var(--radius-sm); font-size: 0.85rem;';
+      newCommentEl.innerHTML = `<strong>${author}</strong> <span style="font-size:0.75rem; color:var(--color-text-muted);">Just now</span><div>${text}</div>`;
+      container.appendChild(newCommentEl);
+      input.value = '';
+    });
+
+    // Category pills filter
+    document.querySelectorAll('#forum-filter-pills .cat-pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        document.querySelectorAll('#forum-filter-pills .cat-pill').forEach(p => {
+          p.style.background = 'var(--color-surface)';
+          p.style.color = 'var(--color-text)';
+          p.style.borderColor = 'var(--color-border)';
+          p.classList.remove('active');
+        });
+        pill.style.background = 'var(--color-primary)';
+        pill.style.color = '#FFF';
+        pill.style.borderColor = 'var(--color-primary)';
+        pill.classList.add('active');
+        selectedCat = pill.getAttribute('data-cat');
+        renderPosts();
+      });
+    });
+
+    // Initial Load
+    loadPosts();
+  </script>
+</body>
+</html>
